@@ -35,9 +35,37 @@ const validateInputs = () => {
   const passwordValue = password.value.trim();
   const password2Value = password2.value.trim();
 
+  const isValidEmail = (email) => {
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  };
+
   if (usernameValue === "") {
     setError(username, "Username is required");
   } else {
     setSuccess(username);
+  }
+  //todo use email.validity
+  if (emailValue === "") {
+    setError(email, "Email is required");
+  } else if (!isValidEmail(emailValue)) {
+    setError(email, "Must be a valid email");
+  } else {
+    setSuccess(email);
+  }
+  // todo -> check minlength, and make sure passsowrd and confirm password are the same
+  if (passwordValue === "") {
+    setError(password, "Password is required");
+  } else if (password.value.length < 8) {
+    setError(password, "Password must be at least 8 characters");
+  } else {
+    setSuccess(password);
+  }
+
+  if (password2Value === "") {
+    setError(password2, "Please confirm your password");
+  } else if (password2Value != passwordValue) {
+    setError(password2, "Passwords must match");
   }
 };

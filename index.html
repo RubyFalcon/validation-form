@@ -9,10 +9,10 @@
   </head>
   <body>
     <div class="container">
-      <form action="/" id="form">
+      <form action="/" id="form" novalidate>
         <h1>Registration</h1>
         <div class="input-control">
-          <label for="username">Username</label>
+          <label for="username">Username:</label>
           <input id="username" type="text" />
           <div class="error"></div>
         </div>
@@ -22,12 +22,18 @@
           <div class="error"></div>
         </div>
         <div class="input-control">
-          <label for="password">password</label>
-          <input id="password" type="password" />
+          <label for="post-code">Post code:</label>
+          <input type="text" id="post-code" />
           <div class="error"></div>
         </div>
         <div class="input-control">
-          <label for="password">password cofirmation</label>
+          <label for="password">Password:</label>
+          <input id="password" type="password" />
+          <div class="error"></div>
+        </div>
+
+        <div class="input-control">
+          <label for="password">Confirm Passwoird:</label>
           <input id="password2" type="password" />
           <div class="error"></div>
         </div>

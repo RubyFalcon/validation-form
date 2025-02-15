@@ -2,6 +2,7 @@
 const form = document.getElementById("form");
 const username = document.getElementById("username");
 const email = document.getElementById("email");
+const postCode = document.getElementById("post-code");
 const password = document.getElementById("password");
 const password2 = document.getElementById("password2");
 
@@ -32,6 +33,7 @@ const validateInputs = () => {
   //trim each input value to remove any whitespace
   const usernameValue = username.value.trim();
   const emailValue = email.value.trim();
+  const postCodeValue = postCode.value.trim();
   const passwordValue = password.value.trim();
   const password2Value = password2.value.trim();
 
@@ -39,6 +41,11 @@ const validateInputs = () => {
     const re =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
+  };
+
+  const isValidPostCode = (postCode) => {
+    const re = /^[A-Z]{1,2}\d[A-Z\d]? ?\d[A-Z]{2}$/;
+    return re.test(String(postCode.toUpperCase()));
   };
 
   if (usernameValue === "") {
@@ -67,5 +74,13 @@ const validateInputs = () => {
     setError(password2, "Please confirm your password");
   } else if (password2Value != passwordValue) {
     setError(password2, "Passwords must match");
+  }
+
+  if (postCodeValue === "") {
+    setError(postCode, "Please add post code");
+  } else if (!isValidPostCode(postCodeValue)) {
+    setError(postCode, "Please provide a valid uk post code");
+  } else {
+    setSuccess(postCode);
   }
 };
